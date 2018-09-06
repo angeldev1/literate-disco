@@ -1,0 +1,3 @@
+[submodule "drucker"]
+	path = drucker
+	url = https://github.com/ovh-ux/drucker.git
