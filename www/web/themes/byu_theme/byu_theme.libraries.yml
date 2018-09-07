@@ -1,0 +1,176 @@
+global-styling:
+  css:
+    theme:
+      css/style.css: {}
+  js:
+    js/scripts.js: {}
+  dependencies:
+      - core/jquery
+bootstrap-scripts:
+  js:
+    bootstrap/assets/javascripts/bootstrap/affix.js: {}
+    bootstrap/assets/javascripts/bootstrap/alert.js: {}
+    bootstrap/assets/javascripts/bootstrap/button.js: {}
+    bootstrap/assets/javascripts/bootstrap/carousel.js: {}
+    bootstrap/assets/javascripts/bootstrap/collapse.js: {}
+    bootstrap/assets/javascripts/bootstrap/dropdown.js: {}
+    bootstrap/assets/javascripts/bootstrap/modal.js: {}
+    bootstrap/assets/javascripts/bootstrap/tooltip.js: {}
+    bootstrap/assets/javascripts/bootstrap/popover.js: {}
+    bootstrap/assets/javascripts/bootstrap/scrollspy.js: {}
+    bootstrap/assets/javascripts/bootstrap/tab.js: {}
+    bootstrap/assets/javascripts/bootstrap/transition.js: {}
+
+fonts-basic:
+  remote: https://cloud.typography.com/75214/7683772/css/fonts.css
+  version: 1.0.0
+  license:
+    name: BYU Fonts Basic
+    url: http://cloud.typography.com/75214/7683772/css/fonts.css
+    gpl-compatible: true
+  css:
+    theme:
+      https://cloud.typography.com/75214/7683772/css/fonts.css: { type: external, minified: true }
+
+fonts-full:
+  remote: https://cloud.typography.com/75214/6517752/css/fonts.css
+  version: 1.0.0
+  license:
+    name: BYU Fonts Basic
+    url: http://cloud.typography.com/75214/6517752/css/fonts.css
+    gpl-compatible: true
+  css:
+    theme:
+      https://cloud.typography.com/75214/6517752/css/fonts.css: { type: external, minified: true }
+
+components-latest:
+  remote: https://github.com/byuweb/byu-theme-components/
+  version: latest
+  license:
+    name: BYUWeb
+    url: https://github.com/byuweb/byu-theme-components/blob/master/LICENSE
+    gpl-compatible: true
+  js:
+     https://cdn.byu.edu/byu-theme-components/latest/byu-theme-components.min.js: { type: external, minified: true }
+  css:
+    theme:
+      https://cdn.byu.edu/byu-theme-components/latest/byu-theme-components.min.css: { type: external, minified: true }
+
+components-master:
+  remote: https://github.com/byuweb/byu-theme-components/
+  version: latest
+  license:
+    name: BYUWeb
+    url: https://github.com/byuweb/byu-theme-components/blob/master/LICENSE
+    gpl-compatible: true
+  js:
+     https://cdn.byu.edu/byu-theme-components/unstable/byu-theme-components.min.js: { type: external, minified: true }
+  css:
+    theme:
+      https://cdn.byu.edu/byu-theme-components/unstable/byu-theme-components.min.css: { type: external, minified: true }
+
+components-1.x.x:
+  remote: https://github.com/byuweb/byu-theme-components/
+  version: 1.x.x
+  license:
+    name: BYUWeb
+    url: https://github.com/byuweb/byu-theme-components/blob/master/LICENSE
+    gpl-compatible: true
+  js:
+     https://cdn.byu.edu/byu-theme-components/1.x.x/byu-theme-components.min.js: { type: external, minified: true }
+  css:
+    theme:
+      https://cdn.byu.edu/byu-theme-components/1.x.x/byu-theme-components.min.css: { type: external, minified: true }
+
+components-1.2.x:
+  remote: https://github.com/byuweb/byu-theme-components/
+  version: 1.2.x
+  license:
+    name: BYUWeb
+    url: https://github.com/byuweb/byu-theme-components/blob/master/LICENSE
+    gpl-compatible: true
+  js:
+     https://cdn.byu.edu/byu-theme-components/1.2.x/byu-theme-components.min.js: { type: external, minified: true }
+  css:
+    theme:
+      https://cdn.byu.edu/byu-theme-components/1.2.x/byu-theme-components.min.css: { type: external, minified: true }
+
+font-awesome:
+  remote: https://fortawesome.github.io/Font-Awesome/
+  version: 4.5.0
+  license:
+    name: MIT
+    url: https://fortawesome.github.io/Font-Awesome/license/
+    gpl-compatible: true
+  css:
+    theme:
+      https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css: { type: external, minified: true }
+
+librebaskerville:
+  version: VERSION
+  css:
+    theme:
+      'https://fonts.googleapis.com/css?family=Libre+Baskerville': { type: external }
+
+sourcesans:
+  version: VERSION
+  css:
+    theme:
+      'https://fonts.googleapis.com/css?family=Source+Sans+Pro': { type: external }
+
+domine:
+  version: VERSION
+  css:
+    theme:
+      'https://fonts.googleapis.com/css?family=Domine': { type: external }
+
+montserrat:
+  version: VERSION
+  css:
+    theme:
+      'https://fonts.googleapis.com/css?family=Montserrat': { type: external }
+
+zillaslab:
+  version: VERSION
+  css:
+    theme:
+      'https://fonts.googleapis.com/css?family=Zilla+Slab': { type: external }
+
+roboto:
+  version: VERSION
+  css:
+    theme:
+      'https://fonts.googleapis.com/css?family=Roboto': { type: external }
+
+byu-buttons:
+  remote: https://github.com/byuweb/byu-theme-style-helpers/
+  version: 1.x.x
+  license:
+    name: BYUButtons
+    url: https://github.com/byuweb/byu-theme-style-helpers/blob/master/LICENSE
+    gpl-compatible: false
+  css:
+    theme:
+      https://cdn.byu.edu/byu-theme-style-helpers/latest/buttons.css: { type: external, minified: false }
+
+byu-tables:
+  remote: https://github.com/byuweb/byu-theme-style-helpers/
+  version: 1.x.x
+  license:
+    name: BYUTables
+    url: https://github.com/byuweb/byu-theme-style-helpers/blob/master/LICENSE
+    gpl-compatible: false
+  css:
+    theme:
+      https://cdn.byu.edu/byu-theme-style-helpers/latest/tables.css: { type: external, minified: false }
+
+byu-box-shadows:
+  remote: https://github.com/byuweb/byu-theme-style-helpers/
+  version: 1.x.x
+  license:
+    name: BYUBoxShadows
+    url: https://github.com/byuweb/byu-theme-style-helpers/blob/master/LICENSE
+    gpl-compatible: false
+  css:
+    theme:
+      https://cdn.byu.edu/byu-theme-style-helpers/latest/box-shadows.css: { type: external, minified: false }

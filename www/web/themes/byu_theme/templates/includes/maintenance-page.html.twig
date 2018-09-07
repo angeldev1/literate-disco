@@ -1,0 +1,34 @@
+{{ attach_library('byu_theme/components-latest') }}
+
+{% include '/themes/byu_theme/templates/includes/header.html.twig' %}
+<div id="wrapper">
+
+
+    <div role="main" class="main {{ min_page_height }} {%  if custom_width %} custom-width " style="width: {{ custom_width }}px{% endif %}">
+
+
+
+        {% if messages %}
+            <section id="messages" class="messages">
+                <div class="container">
+                    {{ messages }}
+                </div>
+            </section>
+        {% endif %}
+
+
+        {% if page.before_content %}
+            {{ page.before_content }}
+        {% endif %}
+        <div class="container">
+            {{ page.content }}
+        </div>
+
+        {% if page.after_content %}
+            {{ page.after_content }}
+        {% endif %}
+
+    </div>
+    {% include '/themes/byu_theme/templates/includes/footer.html.twig' %}
+</div>
+

@@ -1,0 +1,41 @@
+# core: 8.x
+type: theme
+base theme: bootstrap
+# version: 2.0.0
+
+name: 'BYU'
+description: 'BYU brand-compliant theme. Mobile-friendly and accessible.'
+package: 'BYU'
+
+regions:
+  header: 'Header'
+  header_actions: 'Header Actions'
+  nav_top: 'Nav Top'
+  search: 'Search'
+  language_switcher : 'Language Switcher'
+  primary_menu: 'Primary menu'
+  after_menu: 'After menu'
+  header_social: 'Header Social'
+  slide_show: 'Hero Space'
+  slider_contact_form: 'Slider Contact Form'
+  breadcrumb: 'Breadcrumb'
+  before_content : 'Before Content'
+  content: 'Content'
+  after_content: 'After Content'
+  left_sidebar: 'Left Sidebar'
+  right_sidebar: 'Right Sidebar'
+  label_footer: 'Label Footer'
+  footer_11: 'Footer 1'
+  footer_21: 'Footer 2'
+  footer_31: 'Footer 3'
+  footer_41: 'Footer 4'
+
+libraries:
+  - 'byu_theme/global-styling'
+  - 'byu_theme/bootstrap-scripts'
+
+# Information added by Drupal.org packaging script on 2018-05-22
+version: '8.x-2.2'
+core: '8.x'
+project: 'byu_theme'
+datestamp: 1527006192

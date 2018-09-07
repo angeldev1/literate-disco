@@ -1,0 +1,7 @@
+# my-library-name:
+#  version: 8.x
+#  css:
+#    base:
+#      css/custom.css: {}
+#  js:
+#    js/custom.js: {}

@@ -1,0 +1,59 @@
+css:
+  enabled: true
+  src:
+    - scss/**/*.scss
+  dest: dist/
+  flattenDestOutput: true
+  lint:
+    enabled: true
+    failOnError: true
+  sourceComments: false
+  sourceMapEmbed: false
+  outputStyle: expanded
+  autoPrefixerBrowsers:
+    - last 2 versions
+    - IE >= 9
+  includePaths:
+    - ./node_modules
+  sassdoc:
+    enabled: false
+    dest: dist/sassdoc
+    verbose: false
+    theme: default
+    sort:
+      - file
+      - group
+      - line>
+js:
+  enabled: true
+  src:
+    - js/**/*.js
+  dest: dist/
+  destName: all.min.js
+  sourceMapEmbed: false
+  uglify: false
+  babel: false
+  eslint:
+    enabled: true
+    src:
+      - js/**/*.js
+      - gulpfile.js
+patternLab:
+  enabled: true
+  src:
+    root: pattern-lab/
+    source: pattern-lab/source/
+  injectFiles: null
+  injectBower: true
+browserSync:
+  enabled: true
+  port: 3050
+  watchFiles: null
+  baseDir: ./
+  startPath: pattern-lab/public
+  openBrowserAtStart: false
+  browser:
+    - Google Chrome
+  tunnel: false
+  reloadDelay: 50
+  reloadDebounce: 750

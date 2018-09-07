@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html{{ html_attributes }} class="{% if h_semi_transparent_option == 1 %}{{ 'side-header side-header-semi-transparent ' }}{% else %}{% if arg == 'index-header-side-header-semi-transparent' %}{{ 'side-header side-header-semi-transparent' }}{% endif %}{% endif %}{% if header_option == 'h_left' %}{{ 'side-header' }}{% elseif header_option == 'h_right' %}{{ 'side-header side-header-right' }}{% else %}{% if arg == 'index-header-side-header-left' %}{{ 'side-header' }}{% elseif arg == 'index-header-side-header-right' %}{{ 'side-header side-header-right' }}{% endif %}{% endif %} {% if arg == 'index-layout-boxed' %}{{ 'boxed' }}{% elseif arg == 'index-layout-dark' %}{{ 'dark' }}{% else %}{{ layout_option }}{% endif %}">
+
+  <head>
+    <head-placeholder token="{{ placeholder_token|raw }}">
+    <title>{{ head_title|safe_join(' | ') }}</title>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <css-placeholder token="{{ placeholder_token|raw }}">
+    {% if your_css is not empty %}
+        <style>
+            {{ your_css }}
+        </style>
+    {% endif %}
+    <js-placeholder token="{{ placeholder_token|raw }}">
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+  </head>
+
+
+  <body{{ attributes }} {{ attributes.addClass(body_classes) }} data-spy="scroll" data-offset="100">
+  {% if loader == 1 %}
+  <div class="preloader">
+      <div class="status">&nbsp;</div>
+  </div>
+  {% endif %}
+    <a href="#main-content" class="visually-hidden focusable">
+      {{ 'Skip to main content'|t }}
+    </a>
+    <div class="body">
+        {{ page_top }}
+        {{ page }}
+        {{ page_bottom }}
+    </div>
+    <js-bottom-placeholder token="{{ placeholder_token|raw }}">
+  </body>
+</html>
+

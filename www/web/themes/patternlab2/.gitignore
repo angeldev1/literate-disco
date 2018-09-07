@@ -1,0 +1,17 @@
+# Compiled files
+dist/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+
+# Dependencies
+bower_components
+node_modules
+
+# Generated files
+*.sass-cache/
+
+#IDE plugins
+.idea
+atlassian-ide-plugin.xml

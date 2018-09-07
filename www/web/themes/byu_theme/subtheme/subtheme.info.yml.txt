@@ -1,0 +1,39 @@
+name: BYU SubTheme Starter
+type: theme
+core: 8.x
+base theme: byu_theme
+description: 'Example Sub Theme of BYU Drupal 8 (A Responsive BYU Homepage Theme using web components).'
+package: Custom
+
+libraries:
+#  - subtheme/my-library-name
+
+# Define libraries in subtheme.libraries.yml
+# See this page for instructions: https://www.drupal.org/docs/8/theming-drupal-8/adding-stylesheets-css-and-javascript-js-to-a-drupal-8-theme
+
+#Please do not delete regions unless you are sure it will not break anything.
+regions:
+  header: 'Header'
+  header_actions: 'Header Actions'
+  nav_top: 'Nav Top'
+  search: 'Search'
+  language_switcher : 'Language Switcher'
+  primary_menu: 'Primary menu'
+  after_menu: 'After menu'
+  header_social: 'Header Social'
+  slide_show: 'Slide Show'
+  slider_contact_form: 'Slider Contact Form'
+  breadcrumb: 'Breadcrumb'
+  before_content : 'Before Content'
+  content: 'Content'
+  after_content: 'After Content'
+  left_sidebar: 'Left Sidebar'
+  right_sidebar: 'Right Sidebar'
+  label_footer: 'Label Footer'
+#  footer_top    : 'Footer Top'
+  footer_11: 'Footer 1'
+  footer_21: 'Footer 2'
+  footer_31: 'Footer 3'
+  footer_41: 'Footer 4'
+  hidden: Hidden Region  #  do not delete this region - it has a purpose.
+

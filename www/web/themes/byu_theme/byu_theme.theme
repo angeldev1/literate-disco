@@ -1,0 +1,346 @@
+<?php
+/**
+ * @file
+ * Bootstrap sub-theme.
+ *
+ * Place your custom PHP code in this file.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Template\Attribute;
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+global $base_url;
+$theme_root = $base_url.'/'.drupal_get_path('theme','byu_theme');
+
+/**
+ * Do some browser detection and generate body classes based on them
+ * "Borrowed" from wordpress
+ */
+function byu_theme_browser_classes() {
+  // A little browser detection shall we?
+  $browser = $_SERVER[ 'HTTP_USER_AGENT' ];
+  $classes = array();
+
+  // Mac, PC ...or Linux?
+  if (preg_match("/Mac/", $browser)) $classes[] = 'mac';
+  elseif (preg_match("/Windows/", $browser)) $classes[] = 'windows';
+  elseif (preg_match("/Linux/", $browser)) $classes[] = 'linux';
+  else $classes[] = 'unknown-os';
+
+  // Checks browsers in this order: Chrome, Safari, Opera, MSIE, FF
+  // Then, get the browser's version number
+  if (preg_match("/Opera/", $browser)) {
+    $classes[] = 'opera';
+    preg_match("/Opera\/(\d.\d)/si", $browser, $matches);
+    $op_version = 'op' . str_replace('.', '-', $matches[1]);
+    $classes[] = $op_version;
+  }
+  elseif (preg_match("/Trident/", $browser) || preg_match("/MSIE/", $browser)) {
+    $classes[] = 'internet-explorer';
+    if (preg_match("/MSIE 6.0/", $browser) || preg_match("/MSIE 6.1/", $browser)) $classes[] = 'ie6';
+    elseif (preg_match("/MSIE 7.0/", $browser)) $classes[] = 'ie7';
+    elseif (preg_match("/MSIE 8.0/", $browser)) $classes[] = 'ie8';
+    elseif (preg_match("/MSIE 9.0/", $browser)) $classes[] = 'ie9';
+    elseif (preg_match("/MSIE 10.0/", $browser)) $classes[] = 'ie10';
+    elseif (preg_match("/rv:11.0/", $browser)) $classes[] = 'ie11';
+  }
+  elseif (preg_match("/Edge/", $browser)) {
+    $classes[] = 'edge';
+    preg_match("/Edge\/(\d.\d)/si", $browser, $matches);
+    $ed_version = 'ed' . str_replace('.', '-', $matches[1]);
+    $classes[] = $ed_version;
+  }
+  elseif (preg_match("/Firefox/", $browser)) {
+    $classes[] = 'firefox';
+    preg_match("/Firefox\/(\d)/si", $browser, $matches);
+    $ff_version = 'ff' . str_replace('.', '-', $matches[1]);
+    $classes[] = $ff_version;
+  }
+  elseif (preg_match("/Chrome/", $browser)) {
+    $classes[] = 'chrome';
+    preg_match("/Chrome\/(\d.\d)/si", $browser, $matches);
+    $ch_version = 'ch' . str_replace('.', '-', $matches[1]);
+    $classes[] = $ch_version;
+  }
+  elseif (preg_match( "/Safari/", $browser)) {
+    $classes[] = 'safari';
+    preg_match("/Version\/(\d.\d)/si", $browser, $matches);
+    $sf_version = 'sf' . str_replace('.', '-', $matches[1]);
+    $classes[] = $sf_version;
+  }
+  else $classes[] = 'unknown-browser';
+
+  return $classes;
+}
+
+
+
+function byu_theme_preprocess_page(&$variables) {
+  global $base_url;
+  $theme_root = $base_url.'/'.drupal_get_path('theme','byu_theme');
+  $variables['theme_root'] = $theme_root;
+  $byu_theme_root = '/'.drupal_get_path('theme','byu_theme');
+  $variables['byu_theme_root'] = $byu_theme_root;
+  $user = \Drupal::currentUser()->id();
+  $account = \Drupal\user\Entity\User::load($user);
+  $name = $account->getUsername();
+  if($user){
+    $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+    if($user->get('user_picture')->entity){
+      $picture = $user->get('user_picture')->entity->url();
+    }
+  }
+  $current_path = \Drupal::service('path.current')->getPath();
+  $path_args = explode('/', $current_path);
+  $variables['arg'] = $path_args[1];
+
+  $version = trim(theme_get_setting('components_version'));
+  if(!empty($version ) ) {
+
+    if($version == '1.x.x') {
+      $variables['#attached']['library'][] = 'byu_theme/components-1.x.x';
+    } elseif ($version == '1.2.x') {
+      $variables['#attached']['library'][] = 'byu_theme/components-1.2.x';
+    } elseif ($version == 'master') {
+      $variables['#attached']['library'][] = 'byu_theme/components-master';
+    } elseif ($version == 'latest') {
+      $variables['#attached']['library'][] = 'byu_theme/components-latest';
+    } elseif ($version == 'none') {
+      // don't attach components at all
+    }
+
+    $variables['#attached']['library'][] = 'byu_theme/custom-library';
+  } else { // setting wasn't set yet
+    $variables['#attached']['library'][] = 'byu_theme/components-latest';
+  }
+
+  /* --- Load Fonts ------- */
+  $font_package = trim(theme_get_setting('font_package'));
+  if($font_package == 'fonts-full' ) {
+    $variables['#attached']['library'][] = 'byu_theme/fonts-full';
+  } else { // load fonts-basic
+    $variables['#attached']['library'][] = 'byu_theme/fonts-basic';
+  }
+  $fontawesome_use = trim(theme_get_setting('fontawesome_use'));
+  if($fontawesome_use == TRUE ) {
+    $variables['#attached']['library'][] = 'byu_theme/font-awesome';
+  }
+  $librebaskerville_use = trim(theme_get_setting('librebaskerville_use'));
+  if($librebaskerville_use == TRUE ) {
+    $variables['#attached']['library'][] = 'byu_theme/librebaskerville';
+  }
+  $sourcesans_use = trim(theme_get_setting('sourcesans_use'));
+  if($sourcesans_use == TRUE ) {
+    $variables['#attached']['library'][] = 'byu_theme/sourcesans';
+  }
+  $domine_use = trim(theme_get_setting('domine_use'));
+  if($domine_use == TRUE ) {
+    $variables['#attached']['library'][] = 'byu_theme/domine';
+  }
+  $montserrat_use = trim(theme_get_setting('montserrat_use'));
+  if($montserrat_use == TRUE ) {
+    $variables['#attached']['library'][] = 'byu_theme/montserrat';
+  }
+  $zilla_slab_use = trim(theme_get_setting('zilla_slab_use'));
+  if($zilla_slab_use == TRUE ) {
+    $variables['#attached']['library'][] = 'byu_theme/zillaslab';
+  }
+  $roboto_use = trim(theme_get_setting('roboto_use'));
+  if($roboto_use == TRUE ) {
+    $variables['#attached']['library'][] = 'byu_theme/roboto';
+  }
+
+  /* ------ Load Helper Styles --------- */
+  $byu_buttons = trim(theme_get_setting('byu_buttons'));
+  if($byu_buttons == TRUE ) {
+    $variables['#attached']['library'][] = 'byu_theme/byu-buttons';
+  }
+  $byu_tables = trim(theme_get_setting('byu_tables'));
+  if($byu_tables == TRUE ) {
+    $variables['#attached']['library'][] = 'byu_theme/byu-tables';
+  }
+  $byu_box_shadows = trim(theme_get_setting('byu_box_shadows'));
+  if($byu_box_shadows == TRUE ) {
+    $variables['#attached']['library'][] = 'byu_theme/byu-box-shadows';
+  }
+
+
+
+
+  $userOb = $variables['user'];
+
+  // Load the site name out of configuration.
+  $config = \Drupal::config('system.site');
+  $variables['site_name'] = $config->get('name');
+
+  $variables['page_title'] = $variables['page']['#title'];
+  $variables['clients_top'] = views_embed_view('client', 'block_4');
+  $variables['current_url'] = $_SERVER['REQUEST_URI'];
+  $theme_root = $base_url.'/'.drupal_get_path('theme','byu_theme');
+  $variables['theme_root'] = $theme_root;
+  $libraries['#attached']['library'][] = 'herchel/global-styling';
+
+  $variables['logopath'] = file_url_transform_relative(file_create_url(theme_get_setting('logo.url')));
+
+
+  /* -- Load Theme settings ---- */
+  $variables['header_option'] = theme_get_setting('header_option');
+  $variables['subtitle_use'] = theme_get_setting('subtitle_use'); // t/f
+  $variables['subtitle_above'] = theme_get_setting('subtitle_above'); // t/f
+  $variables['subtitle_italic'] = theme_get_setting('subtitle_italic'); // t/f
+
+  $variables['subtitle_text'] = theme_get_setting('subtitle_text'); // text
+
+  //    $variables['attributes'][] = 'katria-testing-header-class';
+  $variables['actions_bg'] = theme_get_setting('actions_bg');
+
+  // sign in
+  $variables['login_use'] = theme_get_setting('login_use'); // t/f
+  $variables['login_url'] = theme_get_setting('login_url');
+  $variables['logout_url'] = theme_get_setting('logout_url');
+  // my account stuff here
+  $variables['myaccount_use'] = theme_get_setting('myaccount_use'); // t/f
+  $variables['myaccount_url'] = theme_get_setting('myaccount_url');
+
+  // search
+  $variables['search_use'] = theme_get_setting('search_use');
+  $variables['search_submit'] = theme_get_setting('search_submit');
+  $variables['search_input'] = theme_get_setting('search_input');
+  // menu
+  $variables['menu_disable'] = theme_get_setting('menu_disable');
+  $variables['transparent'] = theme_get_setting('transparent');
+
+  // hero
+  $hero_setting = theme_get_setting('hero_width');
+  if($hero_setting == '0') {
+    $variables['hero_width'] = 'full-width';
+  } else {
+    $variables['hero_width'] = 'custom-width';
+  }
+
+  $hero_image_setting = theme_get_setting('hero_image_width');
+  if($hero_image_setting == '0') {
+    $variables['hero_image_width'] = '';
+  } else {
+    $variables['hero_image_width'] = 'full-width-images';
+  }
+
+  $hero_behind_setting = theme_get_setting('hero_vs_menu');
+  if($hero_behind_setting == '0') {
+    $variables['hero_vs_menu'] = 'hero-below-menu';
+  } else {
+    $variables['hero_vs_menu'] = 'hero-behind-menu';
+  }
+
+  // general page settings
+  $variables['full_width'] = theme_get_setting('full_width');
+  $variables['custom_width'] = theme_get_setting('custom_width');
+
+  $page_min_setting = theme_get_setting('min_page_height');
+  if($page_min_setting == 'none') {
+    $variables['min_page_height'] = 'no-min-height';
+  } elseif ($page_min_setting == '300') {
+    $variables['min_page_height'] = 'min-height-300';
+  } else {
+    $variables['min_page_height'] = 'min-height-500';
+  }
+
+  $variables['footer_option'] = theme_get_setting('footer_option');
+  $variables['footer_sticky'] = theme_get_setting('footer_sticky');
+  //    $variables['footer_color_option'] = theme_get_setting('footer_color_option');
+  $variables['header_sticky_option'] = theme_get_setting('header_sticky_option');
+  $variables['page_header_option'] = theme_get_setting('page_header_option');
+  $variables['page_header_color_option'] = theme_get_setting('page_header_color_option');
+  $variables['below_slider_option'] = theme_get_setting('below_slider_option');
+  $variables['navigation_option'] =  theme_get_setting('navigation_option');
+  $variables['contact_option'] =  theme_get_setting('contact_option');
+  $variables['contact_about_link'] =  theme_get_setting('contact_about_link');
+  $variables['contact_about'] =  theme_get_setting('contact_about');
+  $variables['contact_us_link'] =  theme_get_setting('contact_us_link');
+  $variables['contact_us'] =  theme_get_setting('contact_us');
+  $variables['breadcrumbs'] =  theme_get_setting('breadcrumbs');
+}
+
+function byu_theme_preprocess_html(&$variables) {
+  global $base_url;
+  $theme_root = $base_url.'/'.drupal_get_path('theme','byu_theme');
+  $variables['theme_root'] = $theme_root;
+
+  $current_path = \Drupal::service('path.current')->getPath();
+  $path_args = explode('/', $current_path);
+  $variables['arg'] = $path_args[1];
+  $variables['layout_option'] = theme_get_setting('layout_option');
+  $variables['header_option'] = theme_get_setting('header_option');
+  $variables['h_semi_transparent_option'] = theme_get_setting('h_semi_transparent_option');
+  $variables['skin_option'] = theme_get_setting('skin_option');
+  $variables['loader'] = theme_get_setting('loader');
+  $variables['your_css'] = theme_get_setting('your_css');
+
+  // general page
+  $full_width = 'full-width-' . theme_get_setting('full_width');
+  $min_page_height = 'min-height-' . theme_get_setting('min_page_height');
+  $variables['attributes']['class'][] = 'body';
+
+  $font_one = "h1-" . theme_get_setting('font_one');
+  $font_two = "h2-" . theme_get_setting('font_two');
+  $font_three = "h3-" . theme_get_setting('font_three');
+  $font_four = "h4-" . theme_get_setting('font_four');
+  $font_five = "h5-" . theme_get_setting('font_five');
+  $font_one_color = theme_get_setting('font_one_color');
+  $font_two_color = theme_get_setting('font_two_color');
+  $font_three_color = theme_get_setting('font_three_color');
+  $font_four_color = theme_get_setting('font_four_color');
+  $font_five_color = theme_get_setting('font_five_color');
+  $p_font = "p-" . theme_get_setting('p_font');
+
+  $variables['attributes'] = new Attribute($variables['attributes']);
+  $variables['attributes']->addClass([$font_one, $font_two, $font_three, $font_four, $font_five, $font_one_color, $font_two_color, $font_three_color, $font_four_color, $font_five_color, $p_font]);
+
+  // adding browser classes to body
+  $browserclasses = byu_theme_browser_classes();
+  $variables['attributes']['class'][] = implode(' ', $browserclasses);// Concatenate with spaces.
+
+  // Get currently active user and his/her roles.
+  $account = \Drupal::currentUser();
+  $roles = $account->getRoles();
+  foreach ($roles as $role) {
+    $variables['attributes']['class'][] = 'role-' . $role;
+  }
+
+  // Adds a class to the body based on whether or not this page is the front page/homepage.
+  if (\Drupal::service('path.matcher')->isFrontPage()) {
+    $thisPage = 'front';
+  }
+  else {
+    $thisPage = 'not-front';
+  }
+  $variables['attributes']->addClass($thisPage);
+
+  // Adds a class to the body based on the current pages content type. If there is no node, no class is added.
+  $node = \Drupal::request()->attributes->get('node');
+  if ($node) {
+    $contentType = $node->bundle();
+    $contentType = str_replace("_", "-", $contentType);
+    $contentType = "type-" . $contentType;
+    $variables['attributes']->addClass($contentType);
+  }
+}
+
+/**
+ * Implements hook_preprocess_user().
+ */
+function byu_theme_preprocess_user(&$variables) {
+  /** @var User $account */
+  $account = $variables['elements']['#user'];
+
+  $variables['username'] = $account->getDisplayName();
+}
+function byu_theme_preprocess_block(&$variables) {
+
+}
+function byu_theme_preprocess_region(&$variables) {
+
+}
