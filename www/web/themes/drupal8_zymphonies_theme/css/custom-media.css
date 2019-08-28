@@ -1,5 +1,13 @@
 @media (min-width: 768px) {
 
+  .middlewidget{
+    padding: 50px 0;
+  }
+
+  .slider-caption{
+    display: inline-block;
+  }
+
   .region-primary-menu{
     display: inline-block !important;
     float: right;

@@ -1,27 +1,26 @@
 {
   "name": "byu_theme",
-  "version": "2.0.0",
+  "version": "4.0.0",
   "description": "BYU D8 theme. Subtheme of Drupal Bootstrap",
   "main": "gulpfile.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node-sass -w ./scss/*.scss css/style.css",
+    "build": "node-sass ./scss/style.scss css/style.css && npm run minify",
+    "minify": "postcss ./css/style.css -o ./css/style.min.css -m -u autoprefixer cssnano && rm ./css/style.css"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/byuweb/byu_theme.git"
   },
-  "author": "Brigham Young University",
+  "author": "Blake Morgan <blake_morgan@byu.edu>",
   "bugs": {
     "url": "https://github.com/byuweb/byu_theme/issues"
   },
   "homepage": "https://github.com/byuweb/byu_theme#readme",
   "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-clean-css": "^3.9.0",
-    "gulp-concat": "^2.6.1",
-    "gulp-inject": "^4.3.0",
-    "gulp-minify": "^2.1.0",
-    "gulp-sass": "^3.1.0",
-    "gulp-sourcemaps": "^2.6.1"
+    "autoprefixer": "^9.6.1",
+    "cssnano": "^4.1.10",
+    "node-sass": "^4.12.0",
+    "postcss-cli": "^6.1.3"
   }
 }

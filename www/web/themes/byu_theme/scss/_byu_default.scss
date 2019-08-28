@@ -1,13 +1,17 @@
+html {
+  font-size: 16px;
+}
+
 /* ------- Default BYU styling --------- */
 /* colors here for now */
 /* blues */
-$navy: #002E5D;
-$medblue: #869DB5;
+$navy: #002e5d;
+$medblue: #869db5;
 $lightBlue: #e0f0cc;
-$xlightblue: #C3DDF9;
-$brightBlue: #0057B8;
+$xlightblue: #c3ddf9;
+$brightBlue: #0057b8;
 
-$royal: #0057B8;
+$royal: #0057b8;
 $lightRoyal: lighten($royal, 25%);
 
 /*// There are 6 grays right now..*/
@@ -18,21 +22,29 @@ $lightergray: #e6e6e6;
 $gray: #c5c5c5;
 $medgray: #666;
 $darkgray: #6a6a6b; // least used gray
-$darkestgray: #141414;  // this should be used for body & default text.
-
+$darkestgray: #141414; // this should be used for body & default text.
 
 /* other colors */
-$red: #B3041A;
+$red: #b3041a;
 
-$yellow: #FCC015;
+$yellow: #fcc015;
 $lightyellow: #fef2d0;
 
-$teal: #84DCB4;
+$teal: #84dcb4;
 $lightteal: #e5f7ef;
 
-$green: #66B200; // doesn't work with accessibility
+$green: #66b200; // doesn't work with accessibility
 $lightgreen: #e0f0cc;
 
+body {
+  font-family: "Public Sans", Arial, sans-serif;
+  line-height: 23px;
+  font-size: 14px;
+  @media screen and (min-width: 786px) {
+    font-size: 16px;
+    line-height: 28px;
+  }
+}
 
 a {
   color: $royal;
@@ -43,32 +55,87 @@ a:hover {
 }
 
 /* --- BYU Components styling --- */
-byu-header a {
-  color: unset;
+byu-header .subtitle {
+  font-size: 16px;
 }
 
-byu-header #site-title {
-  color: #fff;
+div[slot="actions"] {
+  padding-top: 0.2em !important;
+  padding-bottom: 0.2em !important;
 }
 
-byu-header:not([mobile-view]) a {
-  color: #fff;
+div[slot="actions"] a {
+  color: white;
 }
-byu-header:not([mobile-view]) a:hover, byu-header:not([mobile-view]) a:focus {
+
+div[slot="actions"] a:hover {
+  text-decoration: none;
+  color: white;
+}
+
+byu-menu {
+  line-height: 22px;
+}
+
+byu-menu a {
+  color: $navy;
+}
+
+byu-menu a:hover {
+  text-decoration: none;
+  background-color: $lightergray;
+}
+
+byu-menu a.active {
+  background-color: $lightergray;
+}
+
+byu-search div.input-group {
+  display: block !important;
+}
+
+byu-search input.form-control {
+  z-index: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+byu-search input.__byu-search-selected-input {
+  border-radius: 0.9625em !important;
+}
+
+@media (max-width: 799px) {
+  byu-search input.__byu-search-selected-input {
+    border-radius: 0 !important;
+  }
+}
+
+byu-footer-column h2 {
+  color: $darkestgray !important;
+  font-size: 16px !important;
+  line-height: 18px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+}
+
+byu-footer-column a:hover {
   text-decoration: none;
 }
 
-byu-header #site-title a:hover {
-  color: #fff;
+byu-footer-column *:not(byu-footer-action-button) {
+  display: block;
+  padding-bottom: 0.25em;
 }
 
-byu-menu:not([mobile-view]) a {
-  color: $navy;
-  padding: 0;
+byu-footer-action-button a {
+  color: white;
 }
 
-byu-menu a:hover, .nav > li > a:hover, .nav > li > a:focus {
-  background-color: rgba(0,0,0,0.0);
+byu-footer-action-button a:hover {
+  color: white;
+}
+
+byu-social-media-links a {
+  background-clip: unset;
 }
 
 #block-byu-theme-main-menu {
@@ -78,63 +145,34 @@ byu-menu a:hover, .nav > li > a:hover, .nav > li > a:focus {
 }
 
 .p-ringside {
-  font-family: "Ringside Narrow A", "Ringside Narrow B", sans-serif;
+  font-family: "HCo Ringside Narrow SSm", sans-serif;
 }
-.p-gotham {
-  font-family: "Gotham A", "Gotham B", sans-serif;
+.p-publicsans {
+  font-family: "Public Sans", sans-serif;
 }
 .p-libreb {
   font-family: "Libre Baskerville", Georgia, serif;
 }
 .p-sourcesans {
-  font-family: 'Source Sans Pro', sans-serif;
-}
-.p-domine {
-  font-family: 'Domine', sans-serif;
-}
-.p-montserrat {
-  font-family: 'Montserrat', sans-serif;
-}
-.p-zilla_slab {
-  font-family: 'Zilla Slab', sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
 }
 .p-roboto {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
-p {
-  color: $darkestgray;
-}
-
-[slot="site-title"] p, [slot="site-title"] span, [slot="site-title"] div, [slot="site-title"] a,
+[slot="site-title"] p,
+[slot="site-title"] span,
+[slot="site-title"] div,
+[slot="site-title"] a,
 #site-title p,
 #site-title span,
 #site-title div,
 #site-title a {
-  font-family: "Vitesse A", "Vitesse B", serif;
+  font-family: "HCo Ringside Narrow SSm", serif;
 }
 
 .subtitle.italic {
   font-style: italic;
-}
-
-byu-header[mobile-view] [slot="actions"] a {
-  color: $navy;
-  font-weight: 500;
-}
-
-byu-header[mobile-view] [slot="actions"] p {
-  padding-bottom: 0;
-  margin: 0;
-}
-
-[slot="actions"] div,
-[slot="actions"] p {
-  padding-bottom: 0;
-  margin: 0 15px;
-}
-[slot="actions"] a:hover {
-  text-decoration: none;
 }
 
 [slot="actions"].royal div.block {
@@ -159,102 +197,32 @@ span[slot="user-name"] {
   cursor: default;
 }
 
-
 /* -- override we need for byu footer component */
 .secondary-footer [class*="column"] + [class*="column"]:last-child {
   float: none !important;
 }
-
-/* --------- menu ---------- */
-
-/* -------- search --------- */
-/* -- from instructions on byu-search component for SIMPLE search -- */
-byu-search {
-  .element-invisible {
-    display: none;
-  }
-
-  .form-submit {
-    display: none;
-  }
-
-  .form-item, .form-actions {
-    margin: 0;
-    max-height: 23px;
-    padding: 0;
-    /* border-radius: 0px; */
-  }
-  input[type=search] {
-    border-radius: 0;
-  }
-
-  @media (min-width: 1024px) {
-    input[type=search] {
-      height: 30px;
-    }
-  }
-
-  div.input-group {
-    width: 100%;
-  }
-
-  span.input-group-btn {
-    width: 0;
-  }
-}
-
-  /* ------------ */
-  .h1-vitesse h1,
-  .h2-vitesse h2,
-  .h3-vitesse h3,
-  .h4-vitesse h4,
-  .h5-vitesse h5 {
-    font-family: "Vitesse A", "Vitesse B", Georgia, serif;
-    span, a {
-      font-family: "Vitesse A", "Vitesse B", Georgia, serif;
-    }
-  }
-
-  .h1-gotham h1,
-  .h2-gotham h2,
-  .h3-gotham h3,
-  .h4-gotham h4,
-  .h5-gotham h5 {
-    font-family: "Gotham A", "Gotham B", Arial, sans-serif;
-    span, a {
-      font-family: "Gotham A", "Gotham B", Arial, sans-serif;
-    }
-  }
 
 .h1-ringside h1,
 .h2-ringside h2,
 .h3-ringside h3,
 .h4-ringside h4,
 .h5-ringside h5 {
-  font-family: "Ringside Narrow A", "Ringside Narrow B", Arial, sans-serif;
-  span, a {
-    font-family: "Ringside Narrow A", "Ringside Narrow B", Arial, sans-serif;
+  font-family: "HCo Ringside Narrow SSm", Arial, sans-serif;
+  span,
+  a {
+    font-family: "HCo Ringside Narrow SSm", Arial, sans-serif;
   }
 }
 
-  .h1-sentinel h1,
-  .h2-sentinel h2,
-  .h3-sentinel h3,
-  .h4-sentinel h4,
-  .h5-sentinel h5 {
-    font-family: "Sentinel A", "Sentinel B", "Vitesse A", "Vitesse B", Helvetica, serif;
-    span, a {
-      font-family: "Sentinel A", "Sentinel B", "Vitesse A", "Vitesse B", Helvetica, serif;
-    }
-  }
 .h1-sourcesans h1,
 .h2-sourcesans h2,
 .h3-sourcesans h3,
 .h4-sourcesans h4,
 .h5-sourcesans h5 {
-  font-family: 'Source Sans Pro', sans-serif;
-  span, a {
-    font-family: 'Source Sans Pro', sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
+  span,
+  a {
+    font-family: "Source Sans Pro", sans-serif;
   }
 }
 
@@ -263,42 +231,10 @@ byu-search {
 .h3-libreb h3,
 .h4-libreb h4,
 .h5-libreb h5 {
-  font-family: 'Libre Baskerville', serif;
-  span, a {
-    font-family: 'Libre Baskerville', serif;
-  }
-}
-
-.h1-domine h1,
-.h2-domine h2,
-.h3-domine h3,
-.h4-domine h4,
-.h5-domine h5 {
-  font-family: 'Domine', serif;
-  span, a {
-    font-family: 'Domine', serif;
-  }
-}
-
-.h1-montserrat h1,
-.h2-montserrat h2,
-.h3-montserrat h3,
-.h4-montserrat h4,
-.h5-montserrat h5 {
-  font-family: 'Montserrat', serif;
-  span, a {
-    font-family: 'Montserrat', serif;
-  }
-}
-
-.h1-zilla_slab h1,
-.h2-zilla_slab h2,
-.h3-zilla_slab h3,
-.h4-zilla_slab h4,
-.h5-zilla_slab h5 {
-  font-family: 'Zilla Slab', serif;
-  span, a {
-    font-family: 'Zilla Slab', serif;
+  font-family: "Libre Baskerville", serif;
+  span,
+  a {
+    font-family: "Libre Baskerville", serif;
   }
 }
 
@@ -307,211 +243,257 @@ byu-search {
 .h3-roboto h3,
 .h4-roboto h4,
 .h5-roboto h5 {
-  font-family: 'Roboto', serif;
-  span, a {
-    font-family: 'Roboto', serif;
+  font-family: "Roboto", serif;
+  span,
+  a {
+    font-family: "Roboto", serif;
   }
 }
 
-
-  .h1-navy h1, .h2-navy h2, .h3-navy h3, .h4-navy h4, .h5-navy h5 {
+.h1-navy h1,
+.h2-navy h2,
+.h3-navy h3,
+.h4-navy h4,
+.h5-navy h5 {
+  color: $navy;
+  a {
     color: $navy;
-    a {
-      color: $navy;
-    }
-    a:hover {
-      color: $royal;
-    }
   }
+  a:hover {
+    color: $royal;
+  }
+}
 
-  .h1-gray h1, .h2-gray h2, .h3-gray h3, .h4-gray h4, .h5-gray h5 {
+.h1-gray h1,
+.h2-gray h2,
+.h3-gray h3,
+.h4-gray h4,
+.h5-gray h5 {
+  color: $medgray;
+  a {
     color: $medgray;
-    a {
-      color: $medgray;
-    }
-    a:hover {
-      color: $darkgray;
-    }
   }
+  a:hover {
+    color: $darkgray;
+  }
+}
 
-  .h1-black h1, .h2-black h2, .h3-black h3, .h4-black h4, .h5-black h5 {
+.h1-black h1,
+.h2-black h2,
+.h3-black h3,
+.h4-black h4,
+.h5-black h5 {
+  color: #000;
+  a {
     color: #000;
-    a {
-      color: #000;
-    }
-    a:hover {
-      color: $darkgray;
-    }
+  }
+  a:hover {
+    color: $darkgray;
+  }
+}
+
+byu-menu {
+  z-index: 14;
+}
+
+@media (min-width: 1024px) {
+  .hero-behind-menu {
+    margin-top: -36px;
+    position: relative;
+    z-index: -1;
+  }
+}
+
+.full-width-images .block img {
+  width: 100%;
+  height: auto !important;
+}
+
+.full-width-true div.main {
+  max-width: 100%;
+}
+
+.full-width-false div.main {
+  max-width: 1200px;
+}
+
+.main-top.custom-width {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.main {
+  padding: 35px 30px 30px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media screen and (min-width: 1024px) {
+    padding-top: 70px;
   }
 
-  h1 {
-    font-size: 36px;
+  &.no-min-height {
+    min-height: 0;
   }
 
-  h2 {
-    font-size: 29px;
+  &.min-height-300 {
+    min-height: 300px;
   }
 
-  h3 {
-    font-size: 24px;
+  &.min-height-500 {
+    min-height: 500px;
+  }
+}
+
+.main-top {
+  &.custom-width-1400 {
+    max-width: 1400px;
   }
 
-  //byu-menu.transparent {
-  //  z-index: 100;
-  //}
-
-  byu-menu {
-    z-index: 14;
-  }
-
-  @media (min-width: 1024px) {
-    .hero-behind-menu {
-      margin-top: -36px;
-      position: relative;
-      z-index: -1;
-    }
-  }
-
-  .full-width-images .block img {
-    width: 100%;
-    height: auto !important;
-  }
-
-  .full-width-true div.main {
-    max-width: 100%;
-  }
-
-  .full-width-false div.main {
+  &.custom-width-1200 {
     max-width: 1200px;
   }
 
-  .main-top.custom-width {
-    margin-left: auto;
-    margin-right: auto;
+  &.custom-width-1024 {
+    max-width: 1024px;
   }
 
-  .main {
-    padding: 30px;
-    padding-top: 35px;
-    margin-left: auto;
-    margin-right: auto;
-
-    &.no-min-height {
-      min-height: 0;
-    }
-
-    &.min-height-300 {
-      min-height: 300px;
-    }
-
-    &.min-height-500 {
-      min-height: 500px;
-    }
+  &.custom-width-1000 {
+    max-width: 1000px;
   }
 
-  .main.custom-width {
-    padding: 30px 0;
+  &.custom-width-992 {
+    max-width: 992px;
   }
 
-  #page-container {
-    padding: 20px 0;
+  &.custom-width-940 {
+    max-width: 940px;
+  }
+}
+
+.main {
+  &.custom-width-1400 {
+    max-width: 1400px;
   }
 
-
-
-
-  /* Remove box-shadow from menu button in Firefox, Edge, IE11 */
-  .mobile-menu-button {
-    -webkit-box-shadow: none;
-    box-shadow: none;
+  &.custom-width-1200 {
+    max-width: 1200px;
   }
 
-
-  /* ---- Footer ---- */
-  /*.three_four_merged .region-footer-41 {*/
-  /*display: none;*/
-  /*}*/
-  /* - mobile */
-  @media screen and (max-width: 767px) {
-    byu-footer:not('normal') .two-column,
-    byu-footer:not('normal') .three-column,
-    byu-footer:not('normal') .four-column {
-      column: 1;
-    }
+  &.custom-width-1024 {
+    max-width: 1024px;
   }
 
-  /* tablet */
-  @media screen and (min-width: 768px) {
-    .three_four_merged .region-footer-31,
-    .two_three_merged .region-footer-21,
-    .one_two_merged .region-footer-11 {
-      width: 100%;
-      padding-left: 0;
-    }
-
+  &.custom-width-1000 {
+    max-width: 1000px;
   }
 
-  /* large screen */
-  @media screen and (min-width: 1200px) {
-    .three_four_merged .region-footer-31,
-    .two_three_merged .region-footer-21,
-    .one_two_merged .region-footer-11 {
-      width: 50%;
-    }
+  &.custom-width-992 {
+    max-width: 992px;
   }
 
-  byu-footer-column p {
+  &.custom-width-940 {
+    max-width: 940px;
+  }
+}
+
+.main.custom-width {
+  padding: 30px 0;
+}
+
+#page-container {
+  padding: 20px 0;
+}
+
+/* Remove box-shadow from menu button in Firefox, Edge, IE11 */
+.mobile-menu-button {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+/* ---- Footer ---- */
+/*.three_four_merged .region-footer-41 {*/
+/*display: none;*/
+/*}*/
+/* - mobile */
+@media screen and (max-width: 767px) {
+  byu-footer:not(normal) .two-column,
+  byu-footer:not(normal) .three-column,
+  byu-footer:not(normal) .four-column {
+    column: 1;
+  }
+}
+
+/* tablet */
+@media screen and (min-width: 768px) {
+  .three_four_merged .region-footer-31,
+  .two_three_merged .region-footer-21,
+  .one_two_merged .region-footer-11 {
+    width: 100%;
+    padding-left: 0;
+  }
+}
+
+/* large screen */
+@media screen and (min-width: 1200px) {
+  .three_four_merged .region-footer-31,
+  .two_three_merged .region-footer-21,
+  .one_two_merged .region-footer-11 {
+    width: 50%;
+  }
+}
+byu-footer-column p {
   margin: 0;
-  }
+}
 
-  #wrapper.sticky-footer {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
+#wrapper.sticky-footer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
-  .main.sticky-footer {
-    flex-grow: 1;
-  }
+.main.sticky-footer {
+  flex-grow: 1;
+}
 
-  body.admin-menu-bar #wrapper.sticky-footer {
-    min-height: unquote("calc(100vh - 39px)");
-  }
+body.admin-menu-bar #wrapper.sticky-footer {
+  min-height: unquote("calc(100vh - 39px)");
+}
 
-  body.admin-extended-menu-bar #wrapper.sticky-footer {
-    min-height: unquote("calc(100vh - 78px)");
-  }
+body.admin-extended-menu-bar #wrapper.sticky-footer {
+  min-height: unquote("calc(100vh - 78px)");
+}
 
+/* ----------- Helpful Classess ---- */
+.two-column,
+.three-column,
+.four-column {
+  -webkit-column-gap: 15px; /* Chrome, Safari, Opera */
+  -moz-column-gap: 15px; /* Firefox */
+  column-gap: 15px;
+}
+.two-column {
+  column-count: 2;
+  -webkit-column-gap: 30px; /* Chrome, Safari, Opera */
+  -moz-column-gap: 30px; /* Firefox */
+  column-gap: 30px;
+}
+.three-column {
+  column-count: 3;
+}
+.four-column {
+  column-count: 4;
+}
 
-  /* ----------- Helpful Classess ---- */
-  .two-column, .three-column, .four-column {
-    -webkit-column-gap: 15px; /* Chrome, Safari, Opera */
-    -moz-column-gap: 15px; /* Firefox */
-    column-gap: 15px;
-  }
-  .two-column {
-    column-count: 2;
-    -webkit-column-gap: 30px; /* Chrome, Safari, Opera */
-    -moz-column-gap: 30px; /* Firefox */
-    column-gap: 30px;
-  }
-  .three-column {
-    column-count: 3;
-  }
-  .four-column {
-    column-count: 4;
-  }
-
-  .navy-button {
-    background: $navy;
-    color: #fff;
-    padding: 12px 25px;
-  }
-  .medblue-button {
-    background: $navy; /* change to medium blue */
-    color: #fff;
-    padding: 12px 25px;
-  }
+.navy-button {
+  background: $navy;
+  color: #fff;
+  padding: 12px 25px;
+}
+.medblue-button {
+  background: $navy; /* change to medium blue */
+  color: #fff;
+  padding: 12px 25px;
+}
 
 /* Remove white strip under footer */
 
@@ -520,10 +502,32 @@ byu-search {
 }
 
 /* Remove weird header top margin */
-h1, h2, h3, h4, h5 {
+h1,
+h2,
+h3,
+h4,
+h5 {
   margin-top: 0;
 }
 
+/* Drupal overrides */
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+  color: $darkestgray;
+}
+
+.form-control {
+  color: $darkestgray;
+}
+
+.breadcrumb > .active {
+  color: $darkestgray;
+}
+
+.toolbar-tray {
+  position: fixed !important;
+}
 
 /* ------------- Do NOT make custom changes here - if you do they will be overridden when you update the theme.
 1. Create a custom.scss file in this scss directory.

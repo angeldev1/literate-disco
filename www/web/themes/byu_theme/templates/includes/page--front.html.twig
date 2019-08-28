@@ -2,30 +2,30 @@
 <div id="wrapper" {%  if footer_sticky == true %} class="sticky-footer" {% endif %}>
     {% include byu_theme_root ~ '/templates/includes/header.html.twig' %}
 
-    <div class="main-top {{ hero_width }} {{ hero_image_width }} {{ hero_vs_menu }} {%  if hero_width == 'custom-width' %} {%  if custom_width %} " style="width: {{ custom_width }}px{% endif %} {% endif %}">
+    <div class="main-top {{ hero_width }} {{ hero_image_width }} {{ hero_vs_menu }} {%  if hero_width == 'custom-width' %}{%  if custom_width %}custom-width-{{ custom_width }}{% endif %}{% endif %}">
         {% if page.slide_show %}
             {{ page.slide_show }}
         {% endif %}
     </div>
 
-    <div role="main" class="main {{ min_page_height }} {%  if footer_sticky == true %}sticky-footer{% endif %} {%  if custom_width %}custom-width" style="width: {{ custom_width }}px{% endif %}">
+    <div role="main" class="main {{ min_page_height }} {%  if footer_sticky == true %}sticky-footer{% endif %} {%  if custom_width %}custom-width custom-width-{{ custom_width }}{% endif %}">
         {% if page_title %}
             <!--breadcrumbs-->
             {% if page.breadcrumb %}
-            <section class="page-header">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            {{ page.breadcrumb }}
+                <section class="page-header">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                {{ page.breadcrumb }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h1>{{ page_title }}</h1>
+                            </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h1>{{ page_title }}</h1>
-                        </div>
-                    </div>
-                </div>
-            </section>
+                </section>
             {% endif %}
         {% endif %}
 

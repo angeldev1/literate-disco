@@ -1,0 +1,12 @@
+site_name: ''
+short_name: ''
+description: ''
+start_url: '/'
+lang: 'en'
+theme_color: ''
+background_color: ''
+display: ''
+default_image: '0'
+urls_to_cache: '/offline'
+urls_to_exclude: "admin/.*\r\nuser/.*"
+cache_version: '1'

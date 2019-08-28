@@ -1,0 +1,5 @@
+pwa.config:
+  title: PWA settings
+  description: 'Progressive web app configuration'
+  parent: system.admin_config_system
+  route_name: pwa.config

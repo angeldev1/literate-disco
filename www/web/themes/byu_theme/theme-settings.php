@@ -30,13 +30,12 @@ function byu_theme_form_system_theme_settings_alter(&$form, Drupal\Core\Form\For
   $form['byu_components']['components_version'] = [
     '#type' => 'select',
     '#title' => t('Which version of BYU Web components do you want to load?'),
-    '#description' => t('1.x.x. is recommended because it will incorporate all new features and bug fixes without big changes that may require manual adjustments.'),
+    '#description' => t('2.x.x. is recommended because it will incorporate all new features and bug fixes without big changes that may require manual adjustments.'),
     '#options' => [
-      '1.x.x' => t('1.x.x - Get new features & bug fixes'),
-      '1.2.x' => t('1.2.x - Stay on version 1.2 and only get bug fixes, no features'),
       'latest' => t('Latest - every update, including major version changes.'),
       'master' => t('Master - Latest development, Use for Development & Testing.'),
       'none' => t('Don\'t load components. This is primarily for testing purposes.'),
+      '2.x.x' => t('2.x.x - every minor and patch update to version two.'),
     ],
     '#default_value' => theme_get_setting('components_version'),
   ];
@@ -48,17 +47,7 @@ function byu_theme_form_system_theme_settings_alter(&$form, Drupal\Core\Form\For
     '#group' => 'design',
   ];
   $form['fonts']['google_info'] = [
-    '#markup' => '<p> These are the google font alternative for Sentinel, Vitesse, Gotham, and Ringside. They may load faster, and the BYU Paid fonts from Hoeffler may be phased out in the future.</p>',
-  ];
-  $form['fonts']['font_package'] = [
-    '#type' => 'select',
-    '#title' => t('Which font package do you want to load?'),
-    '#description' => t('If you want Sentinel to show as an option below, select the FULL font package. Save this page and return to set the other settings.'),
-    '#options' => [
-      'fonts-basic' => t('Basic: Vitesse, Gotham, Ringside'),
-      'fonts-full' => t('Full: Vitesse, Gotham, Sentinel & a few others'),
-    ],
-    '#default_value' => theme_get_setting('font_package'),
+    '#markup' => '<p> These are the google font alternatives.</p>',
   ];
   $form['fonts']['fontawesome_use'] = [
     '#type' => 'checkbox',
@@ -77,60 +66,24 @@ function byu_theme_form_system_theme_settings_alter(&$form, Drupal\Core\Form\For
     '#default_value' => theme_get_setting('sourcesans_use'),
     '#description' => t('This sans-serif font is a google font alternative, and may load faster. Click Save, and then this font will be available in the options below.'),
   ];
-  $form['fonts']['domine_use'] = [
-    '#type' => 'checkbox',
-    '#title' => t('Use the google alternatives to Sentinel (Domine).'),
-    '#default_value' => theme_get_setting('domine_use'),
-    '#description' => t('See <a href="https://byu.box.com/s/5rjf18yczhzku8cxy4g1kn28812eriow">here</a> for example.'),
-  ];
-  $form['fonts']['montserrat_use'] = [
-    '#type' => 'checkbox',
-    '#title' => t('Use the google alternatives to Gotham (Montserrat).'),
-    '#default_value' => theme_get_setting('montserrat_use'),
-    '#description' => t('See <a href="https://byu.box.com/s/x7by6y123p68dpnfwegqo08llf1o1ulw">here</a> for example.'),
-  ];
-  $form['fonts']['zilla_slab_use'] = [
-    '#type' => 'checkbox',
-    '#title' => t('Use the google alternatives to Vitesse (Zilla Slab).'),
-    '#default_value' => theme_get_setting('zilla_slab_use'),
-    '#description' => t('See <a href="https://byu.box.com/s/jsuskgf2f3ghc2qa8idj3az3dk8r7me0">here</a> for example.'),
-  ];
   $form['fonts']['roboto_use'] = [
     '#type' => 'checkbox',
-    '#title' => t('Use the google alternatives to Ringside (Roboto).'),
+    '#title' => t('Use google alternatives.'),
     '#default_value' => theme_get_setting('roboto_use'),
     '#description' => t('See <a href="https://byu.box.com/s/kk3iv6hzn7xwagaiv1jdiyytbj0n3i99">here</a> for example.'),
   ];
-  $sentinel_en = (theme_get_setting('font_package') == 'fonts-full');
   $libre_en = theme_get_setting('libreberville_use');
   $sourcesans_en = theme_get_setting('sourcesans_use');
-  $domine_use = theme_get_setting('domine_use');
-  $montserrat_use = theme_get_setting('montserrat_use');
-  $zilla_slab_use = theme_get_setting('zilla_slab_use');
   $roboto_use = theme_get_setting('roboto_use');
 
   $fontOptions = [
-    "vitesse" => "Vitesse",
-    "gotham" => "Gotham",
     "ringside" => "Ringside",
   ];
-  if ($sentinel_en == TRUE) {
-    $fontOptions['sentinel'] = 'Sentinel';
-  }
   if ($libre_en == TRUE) {
     $fontOptions['libreb'] = 'Libre Baskerville';
   }
   if ($sourcesans_en == TRUE) {
     $fontOptions['sourcesans'] = 'Source Sans';
-  }
-  if ($domine_use == TRUE) {
-    $fontOptions['domine'] = 'Domine';
-  }
-  if ($montserrat_use == TRUE) {
-    $fontOptions['montserrat'] = 'Montserrat';
-  }
-  if ($zilla_slab_use == TRUE) {
-    $fontOptions['zilla_slab'] = 'Zilla Slab';
   }
   if ($roboto_use == TRUE) {
     $fontOptions['roboto'] = 'Roboto';
@@ -221,22 +174,13 @@ function byu_theme_form_system_theme_settings_alter(&$form, Drupal\Core\Form\For
   $pFontOptions = [
     'default' => t('Default'),
     'ringside' => t('Ringside (sans-serif)'),
-    'gotham' => t('Gotham (san-serif)'),
+    'publicsans' => t('Public Sans'),
   ];
   if ($libre_en == TRUE) {
     $pFontOptions['libreb'] = 'Libre Baskerville';
   }
   if ($sourcesans_en == TRUE) {
     $pFontOptions['sourcesans'] = 'Source Sans';
-  }
-  if ($domine_use == TRUE) {
-    $pFontOptions['domine'] = 'Domine';
-  }
-  if ($montserrat_use == TRUE) {
-    $pFontOptions['montserrat'] = 'Montserrat';
-  }
-  if ($zilla_slab_use == TRUE) {
-    $pFontOptions['zilla_slab'] = 'Zilla Slab';
   }
   if ($roboto_use == TRUE) {
     $pFontOptions['roboto'] = 'Roboto';
@@ -265,12 +209,6 @@ function byu_theme_form_system_theme_settings_alter(&$form, Drupal\Core\Form\For
     '#default_value' => theme_get_setting('subtitle_use'),
     '#description' => t("Add Sub Title to the site header."),
   ];
-  $form['header_style']['subtitle']['subtitle_above'] = [
-    '#type' => 'checkbox',
-    '#title' => t('Subtitle Above'),
-    '#default_value' => theme_get_setting('subtitle_above'),
-    '#description' => t("Place the subtitle above the Main Title."),
-  ];
   $form['header_style']['subtitle']['subtitle_italic'] = [
     '#type' => 'checkbox',
     '#title' => t('Subtitle Italic'),
@@ -281,7 +219,7 @@ function byu_theme_form_system_theme_settings_alter(&$form, Drupal\Core\Form\For
     '#type' => 'textfield',
     '#title' => t('Site Subtitle'),
     '#default_value' => theme_get_setting('subtitle_text'),
-    '#description' => t("The subtitle appears below (or above) the Main Title."),
+    '#description' => t("The subtitle appears below the Main Title."),
   ];
 
 
@@ -365,16 +303,6 @@ There should only ever be 2 one-word links or one 2-word link, as this space is 
 the <a href="../admin/structure/block" target="_blank">blocks page</a> and place a block into the Header Actions region.</p><p>Action links
 are placed at the bottom of the menu in mobile views. Please make sure your content fits at various breakpoints.</p>',
   ];
-  $form['header_style']['header_actions']['actions_bg'] = [
-    '#type' => 'select',
-    '#title' => t('Action Link Button Style'),
-    '#description' => t('If enabled, the site name and main menu will appear in a bar along the top of the page. You will want to make sure that the menu background is set to transparent.'),
-    '#options' => [
-      'none' => t("No button style"),
-      'royal' => t('Royal Blue button'),
-    ],
-    '#default_value' => theme_get_setting('actions_bg'),
-  ];
 
   //Menu Settings
   $form['header_style']['menu'] = [
@@ -446,10 +374,19 @@ are placed at the bottom of the menu in mobile views. Please make sure your cont
   ];
 
   $form['general_page']['custom_width'] = [
-    '#type' => 'textfield',
+    '#type' => 'select',
     '#title' => t('Custom Page Width'),
     '#default_value' => theme_get_setting('custom_width'),
     '#description' => t("Enter the number of pixels you would like. i.e. '1200' fof 1200px. Defaults to 1000px."),
+    '#options' => [
+      null => 'None',
+      '1400' => '1400px',
+      '1200' => '1200px',
+      '1024' => '1024px',
+      '1000' => '1000px',
+      '992' => '992px',
+      '940' => '940px'
+    ]
   ];
 
   $form['general_page']['min_page_height'] = [
@@ -532,9 +469,9 @@ are placed at the bottom of the menu in mobile views. Please make sure your cont
     '#markup' => '<p>Note: If you are selecting a double wide column layout, you are responsible for formatting your content inside that wide column. That means if you want it to contain two columns of links, you need to add a class to do that.</p><p>The class "two-columns" is available if you would like to use that.</p>',
   ];
   $form['footer_style']['footer_regions'] = [
-    '#markup' => '<p>To place content in the footer:<br>1.Make sure you have the module <a 
-href="https://www.drupal.org/project/block_class">block class</a> downloaded and enabled. <br>2. Go to 
-the <a href="../admin/structure/block" target="_blank">blocks page</a> 
+    '#markup' => '<p>To place content in the footer:<br>1.Make sure you have the module <a
+href="https://www.drupal.org/project/block_class">block class</a> downloaded and enabled. <br>2. Go to
+the <a href="../admin/structure/block" target="_blank">blocks page</a>
 and place blocks into one of the footer regions. Each time you place a block, add the class "byu-footer" to each block. Footer 1, Footer 2, Footer 3, and Footer 4 correspond to the 4 footer columns.</p><p>The header for the footer column will be the block title of the first block in the region.</p>',
   ];
 

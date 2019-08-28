@@ -1,17 +1,9 @@
-# BYU Drupal 8 Thee
+# BYU Drupal 8 Theme
 > Drupal 8 Theme using Bootstrap &amp; Components
 
-Contact Katria Lesser on slack if you have questions about when this will be 
-fully available. We are working out licensing issues and some bug fixes.
-
 ## INSTALLATION
-1. Git clone (or download) and enable 
-[Drupal Bootstrap](https://drupal.org/project/bootstrap).
-2. Git clone (or download) the byu_theme theme, and enable it. 
-3. There is a strong dependency for the BYU footer: Download the module Block 
-Class https://www.drupal.org/project/block_class
-And enable it.
-4. Go to Appearance > Settings > byu_theme. You will see settings similar to 
+1. Using composer, run `composer require drupal/byu_theme`.
+2. Go to Appearance > Settings > byu_theme. You will see settings similar to 
 the byu2017_d7 theme.
 
 These sections each have several options.
@@ -50,3 +42,7 @@ These fields take simple css selectors, so if your search module isn't working,
 make sure you are using a css selector that will not target multiple divs, and 
 that will not change. (i.e. id's of these search elements often change once you 
 start searching or reloading the page.)
+
+## Hidden Region
+
+This theme comes with a region that is used purely for referencing the blocks in that region. This is useful in situations such as using a block entity reference field in some content type. Putting the block in the hidden field would allow you to still use the block in that block entity reference field, but it wouldn't appear on the website.

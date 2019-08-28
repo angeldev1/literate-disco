@@ -88,17 +88,17 @@
     </div>
   </nav>
 
-  <!-- Banner -->
-  {% if is_front and page.welcome_banner_text %}  
-    <div class="container welcome-banner-text">
-      <div class="row">
-        <div class="col-md-12">
-            {{ page.welcome_banner_text }}
-        </div>
+  {% if is_front and show_slideshow%}
+    <div class="container">
+      <div class="flexslider">
+        <ul class="slides">
+          {% for slider_contents in slider_content %}
+            {{ slider_contents | raw }}
+          {% endfor %}
+        </ul>
       </div>
     </div>
   {% endif %}
-  <!-- End Banner -->
 
 </header>
 <!--End Header & Navbar -->
@@ -230,8 +230,39 @@
 <!-- End layout -->
 
 
-
-
+<!-- Start Middle Widget -->
+{% if page.middle_first or page.middle_second or page.middle_third %}
+  <div class="middlewidget">
+    <!-- start: Container -->
+    <div class="container">
+      
+      <div class="row">
+        <!-- Top widget first region -->
+        <div class = {{ middle_class }}>
+          {% if page.middle_first %}
+            {{ page.middle_first }}
+          {% endif %}
+        </div>
+        <!-- End top widget third region -->
+        <!-- Top widget second region -->
+        <div class = {{ middle_class }}>
+          {% if page.middle_second %}
+            {{ page.middle_second }}
+          {% endif %}
+        </div>
+        <!-- End top widget third region -->
+        <!-- Top widget third region -->
+        <div class = {{ middle_third_class }}>
+          {% if page.middle_third %}
+            {{ page.middle_third }}
+          {% endif %}
+        </div>
+        <!-- End top widget third region -->
+      </div>
+    </div>
+  </div>
+{% endif %}
+<!--End Top Widget -->
 
 
 <!-- Start bottom -->
@@ -279,8 +310,6 @@
 <!--End Bottom -->
 
 
-
-
 <!-- start: Footer -->
 {% if page.footer_first or page.footer_second or page.footer_third %}
   <div class="footerwidget">
@@ -317,6 +346,7 @@
 {% endif %}
 <!--End Footer -->
 
+
 <!-- Start Footer Menu -->
 {% if page.footer_menu %}
   <div class="footer-menu">
@@ -329,22 +359,22 @@
         <div class="col-sm-6 col-md-6">
           <div class="social-media">
             {% if facebook_url %}
-              <a href="{{ facebook_url }}"  class="facebook" target="_blank" ><i class="fa fa-facebook"></i></a>
+              <a href="{{ facebook_url }}"  class="facebook" target="_blank" ><i class="fab fa-facebook-f"></i></a>
             {% endif %}
             {% if google_plus_url %}
-              <a href="{{ google_plus_url }}"  class="google-plus" target="_blank" ><i class="fa fa-google-plus"></i></a>
+              <a href="{{ google_plus_url }}"  class="google-plus" target="_blank" ><i class="fab fa-google-plus-g"></i></a>
             {% endif %}
             {% if twitter_url %}
-              <a href="{{ twitter_url }}" class="twitter" target="_blank" ><i class="fa fa-twitter"></i></a>
+              <a href="{{ twitter_url }}" class="twitter" target="_blank" ><i class="fab fa-twitter"></i></a>
             {% endif %}
             {% if linkedin_url %}
-              <a href="{{ linkedin_url }}" class="linkedin" target="_blank"><i class="fa fa-linkedin"></i></a>
+              <a href="{{ linkedin_url }}" class="linkedin" target="_blank"><i class="fab fa-linkedin-in"></i></a>
             {% endif %}
             {% if pinterest_url %}
-              <a href="{{ pinterest_url }}" class="pinterest" target="_blank" ><i class="fa fa-pinterest"></i></a>
+              <a href="{{ pinterest_url }}" class="pinterest" target="_blank" ><i class="fab fa-pinterest-p"></i></a>
             {% endif %}
             {% if rss_url %}
-              <a href="{{ rss_url }}" class="rss" target="_blank" ><i class="fa fa-rss"></i></a>
+              <a href="{{ rss_url }}" class="rss" target="_blank" ><i class="fas fa-rss"></i></a>
             {% endif %}
           </div>
         </div>
@@ -354,6 +384,7 @@
   </div>
 {% endif %}
 <!-- End Footer Menu -->
+
 
 {% if copyright_text or show_credit_link %}
 <div class="copyright">

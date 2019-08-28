@@ -1,12 +1,7 @@
-global-styling:
+framework:
   css:
     theme:
-      css/style.css: {}
-  js:
-    js/scripts.js: {}
-  dependencies:
-      - core/jquery
-bootstrap-scripts:
+      css/style.min.css: {}
   js:
     bootstrap/assets/javascripts/bootstrap/affix.js: {}
     bootstrap/assets/javascripts/bootstrap/alert.js: {}
@@ -20,28 +15,28 @@ bootstrap-scripts:
     bootstrap/assets/javascripts/bootstrap/scrollspy.js: {}
     bootstrap/assets/javascripts/bootstrap/tab.js: {}
     bootstrap/assets/javascripts/bootstrap/transition.js: {}
-
-fonts-basic:
-  remote: https://cloud.typography.com/75214/7683772/css/fonts.css
-  version: 1.0.0
+    js/scripts.js: {}
+fonts-ringside:
+  remote: https://cdn.byu.edu/theme-fonts/1.x.x/ringside/fonts.css
+  version: 1.2.0
   license:
-    name: BYU Fonts Basic
-    url: http://cloud.typography.com/75214/7683772/css/fonts.css
+    name: BYU Fonts Ringside
+    url: https://cdn.byu.edu/theme-fonts/1.x.x/ringside/fonts.css
     gpl-compatible: true
   css:
     theme:
-      https://cloud.typography.com/75214/7683772/css/fonts.css: { type: external, minified: true }
+      https://cdn.byu.edu/theme-fonts/1.x.x/ringside/fonts.css: { type: external, minified: true }
 
-fonts-full:
-  remote: https://cloud.typography.com/75214/6517752/css/fonts.css
-  version: 1.0.0
+fonts-publicsans:
+  remote: https://cdn.byu.edu/theme-fonts/1.x.x/public-sans/fonts.css
+  version: 1.2.0
   license:
-    name: BYU Fonts Basic
-    url: http://cloud.typography.com/75214/6517752/css/fonts.css
+    name: BYU Fonts Public Sans
+    url: https://cdn.byu.edu/theme-fonts/1.x.x/public-sans/fonts.css
     gpl-compatible: true
   css:
     theme:
-      https://cloud.typography.com/75214/6517752/css/fonts.css: { type: external, minified: true }
+      https://cdn.byu.edu/theme-fonts/1.x.x/public-sans/fonts.css: { type: external, minified: true }
 
 components-latest:
   remote: https://github.com/byuweb/byu-theme-components/
@@ -56,6 +51,20 @@ components-latest:
     theme:
       https://cdn.byu.edu/byu-theme-components/latest/byu-theme-components.min.css: { type: external, minified: true }
 
+components-2.x.x:
+  remote: https://github.com/byuweb/byu-theme-components/
+  version: latest
+  license:
+    name: BYUWeb
+    url: https://github.com/byuweb/byu-theme-components/blob/master/LICENSE
+    gpl-compatible: true
+  js:
+     https://cdn.byu.edu/byu-theme-components/experimental/v2/byu-theme-components.min.js: { type: external, minified: true }
+  css:
+    theme:
+      https://cdn.byu.edu/byu-theme-components/experimental/v2/byu-theme-components.min.css: { type: external, minified: true }
+
+
 components-master:
   remote: https://github.com/byuweb/byu-theme-components/
   version: latest
@@ -68,32 +77,6 @@ components-master:
   css:
     theme:
       https://cdn.byu.edu/byu-theme-components/unstable/byu-theme-components.min.css: { type: external, minified: true }
-
-components-1.x.x:
-  remote: https://github.com/byuweb/byu-theme-components/
-  version: 1.x.x
-  license:
-    name: BYUWeb
-    url: https://github.com/byuweb/byu-theme-components/blob/master/LICENSE
-    gpl-compatible: true
-  js:
-     https://cdn.byu.edu/byu-theme-components/1.x.x/byu-theme-components.min.js: { type: external, minified: true }
-  css:
-    theme:
-      https://cdn.byu.edu/byu-theme-components/1.x.x/byu-theme-components.min.css: { type: external, minified: true }
-
-components-1.2.x:
-  remote: https://github.com/byuweb/byu-theme-components/
-  version: 1.2.x
-  license:
-    name: BYUWeb
-    url: https://github.com/byuweb/byu-theme-components/blob/master/LICENSE
-    gpl-compatible: true
-  js:
-     https://cdn.byu.edu/byu-theme-components/1.2.x/byu-theme-components.min.js: { type: external, minified: true }
-  css:
-    theme:
-      https://cdn.byu.edu/byu-theme-components/1.2.x/byu-theme-components.min.css: { type: external, minified: true }
 
 font-awesome:
   remote: https://fortawesome.github.io/Font-Awesome/

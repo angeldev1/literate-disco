@@ -1,0 +1,56 @@
+<?php
+
+/**
+ * @file
+ * PWA hooks.
+ */
+
+/**
+ * Implements hook_page_attachments().
+ */
+function pwa_page_attachments(array &$attachments) {
+  if (!\Drupal::currentUser()->hasPermission('access pwa')) {
+    return;
+  }
+  $attachments['#attached']['library'][] = 'pwa/serviceworker';
+
+  $config = \Drupal::config('pwa.config');
+
+  $manifest_link = [
+    '#tag' => 'link',
+    '#attributes' => [
+      'rel' => 'manifest',
+      'href' => '/manifest.json',
+    ],
+  ];
+  $attachments['#attached']['html_head'][] = [$manifest_link, 'manifest'];
+
+  $theme_color = [
+    '#tag' => 'meta',
+    '#attributes' => [
+      'name' => 'theme-color',
+      'content' => $config->get('theme_color'),
+    ],
+  ];
+  $attachments['#attached']['html_head'][] = [$theme_color, 'theme_color'];
+}
+
+/**
+ * Implements hook_theme().
+ */
+function pwa_theme() {
+  return [
+    'offline' => [
+      'variables' => [],
+    ],
+  ];
+}
+
+/**
+ * Check data from input.
+ */
+function pwa_str_to_list($string) {
+  $list = explode("\n", $string);
+  $list = array_map('trim', $list);
+  return array_filter($list, 'strlen');
+}

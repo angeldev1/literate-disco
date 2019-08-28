@@ -1,0 +1,8 @@
+serviceworker:
+  version: VERSION
+  js:
+    js/serviceworker-load.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings

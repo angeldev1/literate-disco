@@ -14,4 +14,10 @@ jQuery(document).ready(function($){
 			$('.region-primary-menu').hide();
 	    });
 	}
+
+	//flexslider
+	jQuery('.flexslider').flexslider({
+    	animation: "slide"	
+    });
+    
 });

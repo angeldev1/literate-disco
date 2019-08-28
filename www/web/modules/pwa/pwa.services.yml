@@ -1,0 +1,4 @@
+services:
+  pwa.manifest:
+    class: Drupal\pwa\Manifest
+    arguments: ['@config.factory', '@language_manager']

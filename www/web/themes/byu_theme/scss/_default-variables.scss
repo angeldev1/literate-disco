@@ -10,29 +10,36 @@
  * ./THEMENAME/bootstrap/assets/stylesheets/bootstrap/_variables.scss
  */
 
-// Set the proper directory for the Bootstrap Glyphicon font.
-$icon-font-path: '../bootstrap/assets/fonts/bootstrap/';
+// Set the directory for the theme root used to locate images, fonts etc.
+$theme-root: '..';
+
+// Set other directories relative to theme root.
+$image-path: '#{$theme-root}/images';
+$icon-font-path: '#{$theme-root}/bootstrap/assets/fonts/bootstrap/';
 
 $gray-base:             #000;
 $gray-darker:           #141414;
 $gray-dark:             #666;
-$gray:                  #C5C5C5;
-$gray-light:            #E6E6E6;
-$gray-lighter:          #F2F2F2;
+$gray:                  #8F8F8F;
+$gray-light:            #C5C5C5;
+$gray-lighter:          #E6E6E6;
 
 $brand-primary:         #002E5D;
-$brand-secondary:       #0057B8;
-$brand-success:         #66B200;
-$brand-info:            #5F7C9B;
-$brand-warning:         #FCC015;
-$brand-danger:          #B3041A;
+$brand-secondary:       #0062B8;
+$brand-success:         #1FB3D1;
+$brand-info:            #10A170;
+$brand-warning:         #FFB700;
+$brand-danger:          #E61744;
 
 $text-color:            $gray-darker;
 $link-color:            $brand-secondary;
 $link-hover-color:      $brand-primary;
 
-$font-family-sans-serif:  "Ringside Narrow A", "Ringside Narrow B", Helvetica, Arial, sans-serif !default;
-$font-family-serif:       "Vitesse A", "Vitesse B", "Times New Roman", Times, serif !default;
+$font-family-sans-serif:  "Public Sans", Arial, sans-serif !default;
+$font-family-serif:       "Public Sans", Times, serif !default;
+
+$line-height-base:        1.6428571428571428 !default;
+$font-size-base:          14px !default;
 
 $table-bg-accent:               $gray-lighter;
 $table-bg-hover:                $gray-light;
